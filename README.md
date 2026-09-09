@@ -34,7 +34,7 @@ Serverless full-stack app: Google sign-in via Firebase Auth, notes stored in Fir
 
 ---
 
-### [vertex-ai-changelog](https://github.com/pawel-janus/vertex-ai-changelog)
+### [vertex-ai](https://github.com/pawel-janus/vertex-ai)
 
 Minimal Hono backend on Cloud Run that generates changelog entries from git commit messages using Vertex AI Gemini 3.8 Flash. Same SDK (`@google/genai`) as Smart Changelog, but with `vertexai: true` backend — demonstrates auth model differences (API key vs ADC), enterprise features (Cloud Logging, Model Garden), and cost structure (thoughts tokens).
 
