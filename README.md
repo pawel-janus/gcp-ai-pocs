@@ -56,11 +56,11 @@ CI/CD pipeline for Smart Changelog using GitHub Actions authenticated to GCP via
 
 ### pubsub-cloud-run *(planned)*
 
-Two Cloud Run services communicating asynchronously through Pub/Sub. Producer publishes events; consumer receives them via push subscription and processes them. Practical extension: `release` event triggers changelog generation in Smart Changelog.
+Two Cloud Run services communicating asynchronously through Pub/Sub. Producer publishes events to a topic; consumer (private Cloud Run service) receives them via push subscription with identity token authentication. Demonstrates service-to-service auth pattern: consumer has no public access — only Pub/Sub (with dedicated Service Account) can invoke it. Extends POC #2 pattern with automatic token management.
 
-**Patterns:** push vs pull subscriptions · message acknowledgment · dead-letter topics · decoupled service architecture · publisher/subscriber IAM
+**Patterns:** push subscription with Service Account auth · private Cloud Run (`--no-allow-unauthenticated`) · identity token authentication (automatic via Pub/Sub) · message acknowledgment · dead-letter topics · least privilege IAM (separate SAs for producer, consumer, Pub/Sub invoker) · service-to-service communication without static credentials · retry logic with exponential backoff
 
-`TypeScript` `Pub/Sub` `Cloud Run` `Firestore`
+`TypeScript` `Fastify` `Hono` `Pub/Sub` `Cloud Run` `Firestore` `IAM` `Service Accounts`
 
 ---
 
