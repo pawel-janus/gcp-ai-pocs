@@ -1,10 +1,6 @@
-# GCP / AI — Reference Implementations
+# Portfolio
 
-TypeScript fullstack developer transitioning to cloud-native. These repositories are deliberate practice: each one targets a specific GCP or AI integration pattern I intend to use in production work.
-
-They are proof-of-concept implementations — intentionally scoped, some things simplified — not production systems. The goal is to understand the pattern and have a working reference, not to ship a product.
-
-Two Google Cloud certifications provide the theoretical foundation; these projects are the applied side.
+TypeScript fullstack developer building production-ready applications on Google Cloud Platform. Focused on serverless architecture, AI integrations, and modern frontend patterns.
 
 **Certifications**
 - Google Cloud Associate Cloud Engineer
@@ -12,76 +8,80 @@ Two Google Cloud certifications provide the theoretical foundation; these projec
 
 ---
 
-## Projects
+## GCP Projects
+
+Building serverless infrastructure, AI applications, and data pipelines on GCP.
 
 ### [smart-changelog](https://github.com/pawel-janus/smart-changelog)
 
-Web app that connects to a GitHub repository, analyzes commits and pull requests using Gemini AI, and generates a human-readable changelog. Deployed on Cloud Run. Also exposes an MCP server so AI assistants (Claude) can call the same logic as a tool.
+AI-powered changelog generator. Analyzes GitHub commits and PRs using Gemini, generates human-readable changelogs. Deployed on Cloud Run with MCP server integration.
 
-**Patterns:** Gemini streaming over SSE · Secret Manager · MCP Server (stdio + SSE transport) · monorepo with shared services · multi-stage Docker build · Cloud Build CI/CD
-
-`TypeScript` `Fastify` `React` `Gemini` `Cloud Run` `Secret Manager` `Turborepo` `MCP`
-
----
+`TypeScript` `Fastify` `React` `Gemini` `Cloud Run` `MCP`
 
 ### [functions-firestore-auth](https://github.com/pawel-janus/functions-firestore-auth)
 
-Serverless full-stack app: Google sign-in via Firebase Auth, notes stored in Firestore, backend logic in Cloud Functions (2nd gen). JWT verified server-side on every request — no sessions. Frontend deployed to Firebase Hosting.
+Serverless full-stack: Firebase Auth (Google sign-in), Firestore database, Cloud Functions backend. JWT verification, user-scoped queries, Firebase Hosting.
 
-**Patterns:** JWT verification in Cloud Function · user-scoped Firestore queries · composite indexes · named database · esbuild bundling for npm workspaces · Firebase Emulator Suite for local dev
-
-`TypeScript` `Cloud Functions (2nd gen)` `Firestore` `Firebase Auth` `Firebase Hosting` `React`
-
----
+`TypeScript` `Cloud Functions` `Firestore` `Firebase Auth`
 
 ### [vertex-ai](https://github.com/pawel-janus/vertex-ai)
 
-Minimal Hono backend on Cloud Run that generates changelog entries from git commit messages using Vertex AI Gemini 3.8 Flash. Same SDK (`@google/genai`) as Smart Changelog, but with `vertexai: true` backend — demonstrates auth model differences (API key vs ADC), enterprise features (Cloud Logging, Model Garden), and cost structure (thoughts tokens).
+Vertex AI Gemini 3.8 Flash backend. Demonstrates enterprise AI: ADC authentication, private Cloud Run, thoughts tokens observability.
 
-**Patterns:** `@google/genai` with Vertex AI backend · Application Default Credentials (separate file for local dev) · service account authentication · Gemini 3.8 Flash with chain-of-thought reasoning · thoughts tokens observability · npm workspace (shared types) · private Cloud Run service · region `us`/`eu` for Gemini 3.x
-
-`TypeScript` `Hono` `Vertex AI` `Gemini 3.8 Flash` `Cloud Run` `Cloud Logging` `ADC` `npm workspaces`
+`TypeScript` `Hono` `Vertex AI` `Gemini 3.8`
 
 ---
 
-### github-actions-wif *(planned)*
+## Next.js Projects
 
-CI/CD pipeline for Smart Changelog using GitHub Actions authenticated to GCP via Workload Identity Federation — no long-lived service account keys stored anywhere. On push to `main`: build image → push to Artifact Registry → deploy to Cloud Run.
+Modern Next.js 16 App Router patterns: SSR, ISR, Server Actions, route organization. Progressive POC sequence exploring production patterns.
 
-**Patterns:** OIDC token exchange · keyless GCP authentication · minimal-privilege deploy service account · Artifact Registry
+### [nextjs-ssr-basics](https://github.com/pawel-janus/nextjs-ssr-basics)
 
-`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Artifact Registry`
+Weather dashboard demonstrating Server-Side Rendering (SSR) with Next.js 16 App Router. Async Server Components, Suspense boundaries, error.tsx, Tailwind v4.
+
+`TypeScript` `Next.js 16` `React 19` `Tailwind v4` `Cloud Run`
+
+### [nextjs-interactive-weather](https://github.com/pawel-janus/nextjs-interactive-weather)
+
+Client Components and interactivity: city selector, recent searches, API Routes. Demonstrates 'use client', useState/useEffect, useRouter, useSearchParams.
+
+`TypeScript` `Next.js 16` `Client Components` `API Routes` `Zod` `Cloud Run`
+
+### [nextjs-dynamic-routes](https://github.com/pawel-janus/nextjs-dynamic-routes)
+
+Dynamic routes (`/weather/[city]`), loading.tsx, not-found.tsx, generateMetadata for SEO. Shared server-side weatherService. Better SEO, shareable links.
+
+`TypeScript` `Next.js 16` `Dynamic Routes` `Loading States` `Cloud Run`
+
+### [nextjs-server-actions](https://github.com/pawel-janus/nextjs-server-actions)
+
+Weather app with Server Actions and progressive enhancement. Form works without JavaScript. Replaces API Routes with 'use server' functions.
+
+`TypeScript` `Next.js 16` `Server Actions` `useActionState` `Cloud Run`
+
+### [nextjs-isr-ssg](https://github.com/pawel-janus/nextjs-isr-ssg)
+
+Incremental Static Regeneration (ISR) and Static Site Generation (SSG). Popular cities pre-rendered at build time, revalidated every hour. Time-based cache invalidation.
+
+`TypeScript` `Next.js 16` `ISR` `SSG` `Cloud Run`
+
+### [nextjs-route-groups](https://github.com/pawel-janus/nextjs-route-groups)
+
+Route Groups demonstration: different layouts per section, code organization without URL changes. Homepage uses hero layout, weather pages use sticky search bar.
+
+`TypeScript` `Next.js 16` `Route Groups` `Nested Layouts` `Cloud Run`
+
+**In progress:** NextAuth.js authentication, Firestore database integration, multi-provider OAuth.
 
 ---
 
-### pubsub-cloud-run *(planned)*
+## AI/LLM Applications
 
-Two Cloud Run services communicating asynchronously through Pub/Sub. Producer publishes events to a topic; consumer (private Cloud Run service) receives them via push subscription with identity token authentication. Demonstrates service-to-service auth pattern: consumer has no public access — only Pub/Sub (with dedicated Service Account) can invoke it. Extends POC #2 pattern with automatic token management.
+Cloud-agnostic AI patterns with GCP implementation (in progress).
 
-**Patterns:** push subscription with Service Account auth · private Cloud Run (`--no-allow-unauthenticated`) · identity token authentication (automatic via Pub/Sub) · message acknowledgment · dead-letter topics · least privilege IAM (separate SAs for producer, consumer, Pub/Sub invoker) · service-to-service communication without static credentials · retry logic with exponential backoff
-
-`TypeScript` `Fastify` `Hono` `Pub/Sub` `Cloud Run` `Firestore` `IAM` `Service Accounts`
+**Planned:** RAG (retrieval-augmented generation), multi-step agents, semantic caching, guardrails, multi-modal.
 
 ---
 
-### terraform-iac *(planned)*
-
-Full GCP infrastructure for an existing project (Smart Changelog) provisioned entirely through Terraform — Cloud Run, Secret Manager secrets, Artifact Registry, IAM bindings. State stored in GCS. No manual `gcloud` commands, no console clicks.
-
-**Patterns:** IaC mindset · remote state in GCS · IAM as code · Terraform + firebase-tools split (Firebase resources not supported by Terraform)
-
-`Terraform` `GCS` `Cloud Run` `Secret Manager` `Artifact Registry`
-
----
-
-### bigquery-cloud-sql *(planned)*
-
-Fastify backend on Cloud Run that queries a public BigQuery dataset (Bitcoin blockchain), aggregates results, and persists daily summaries to Cloud SQL (PostgreSQL). REST API serves pre-aggregated data without re-running expensive BQ queries.
-
-**Patterns:** BQ Node.js client · parameterized queries · Cloud SQL Connector (no public IP) · ETL in TypeScript: extract (BQ) → transform (backend) → load (Cloud SQL) · Cloud Scheduler for daily sync
-
-`TypeScript` `Fastify` `BigQuery` `Cloud SQL (PostgreSQL)` `Cloud Run` `Cloud Scheduler`
-
----
-
-> These implementations prioritize pattern clarity over production completeness. Error handling, observability, and scalability are simplified or omitted where they would obscure the core pattern being explored.
+> These implementations prioritize pattern clarity over production completeness. The goal is to understand the pattern and have a working reference, not to ship a product.
