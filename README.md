@@ -30,6 +30,12 @@ Vertex AI Gemini 3.8 Flash backend. Demonstrates enterprise AI: ADC authenticati
 
 `TypeScript` `Hono` `Vertex AI` `Gemini 3.8`
 
+### [gcp-github-actions](https://github.com/pawel-janus/gcp-github-actions)
+
+CI/CD pipeline with GitHub Actions and Workload Identity Federation. Keyless authentication via OIDC token exchange — zero static credentials. Automated deployment: push to main → Cloud Build → Artifact Registry → Cloud Run. Monorepo with multiple workspaces (in progress).
+
+`GitHub Actions` `Workload Identity Federation` `Cloud Build` `Cloud Run` `TypeScript`
+
 ---
 
 ## Next.js Projects
