@@ -32,9 +32,9 @@ Vertex AI Gemini 3.8 Flash backend. Demonstrates enterprise AI: ADC authenticati
 
 ### [gcp-github-actions](https://github.com/pawel-janus/gcp-github-actions)
 
-CI/CD pipeline with GitHub Actions and Workload Identity Federation. Keyless authentication via OIDC token exchange — zero static credentials. Automated deployment: push to main → Cloud Build → Artifact Registry → Cloud Run + Firebase Hosting. Monorepo with multiple independent workspaces.
+CI/CD pipeline with GitHub Actions and Workload Identity Federation. Keyless authentication via OIDC token exchange — zero static credentials. Smart deployment with path filtering: deploy only changed workspaces. Phase 1-3: backend (Cloud Run), frontend (Firebase Hosting), conditional deployment with reusable workflows.
 
-`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Firebase Hosting` `React` `TypeScript`
+`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Firebase Hosting` `React` `TypeScript` `path filtering`
 
 ---
 
