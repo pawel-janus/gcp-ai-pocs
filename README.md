@@ -78,7 +78,13 @@ Route Groups demonstration: different layouts per section, code organization wit
 
 `TypeScript` `Next.js 16` `Route Groups` `Nested Layouts` `Cloud Run`
 
-**In progress:** NextAuth.js authentication, Firestore database integration, multi-provider OAuth.
+### [nextjs-auth-middleware](https://github.com/pawel-janus/nextjs-auth-middleware)
+
+NextAuth.js v5 integration with Google OAuth. Middleware-based route protection, httpOnly cookie sessions, Server Actions. Full page redirect OAuth flow, protected dashboard.
+
+`TypeScript` `Next.js 16` `NextAuth` `OAuth 2.0` `Middleware` `Cloud Run`
+
+**In progress:** Firestore database integration, multi-provider OAuth.
 
 ---
 
