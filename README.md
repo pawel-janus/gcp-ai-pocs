@@ -1,3 +1,5 @@
+> **⚠️ This catalog has moved to [portfolio](https://github.com/pawel-janus/portfolio)**
+
 # Portfolio
 
 TypeScript fullstack developer building production-ready applications on Google Cloud Platform. Focused on serverless architecture, AI integrations, and modern frontend patterns.
