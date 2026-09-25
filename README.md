@@ -92,9 +92,15 @@ NextAuth.js v5 integration with Google OAuth. Middleware-based route protection,
 
 ## AI/LLM Applications
 
-Cloud-agnostic AI patterns with GCP implementation (in progress).
+Production AI/LLM patterns with GCP implementation. Progressive POC sequence: embeddings → RAG → agents → conversations.
 
-**Planned:** RAG (retrieval-augmented generation), multi-step agents, semantic caching, guardrails, multi-modal.
+### [llm-search](https://github.com/pawel-janus/llm-search)
+
+Semantic search over SEC quarterly filings. Vector embeddings with Vertex AI, Firestore vector search, 275 real financial documents from BigQuery. Deployed to Cloud Run with 411ms warm latency, similarity 0.82-0.85.
+
+`TypeScript` `Fastify` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed`
+
+**Planned (Phase 1):** RAG pipeline · Multi-source agents (SEC + IEX) · Multi-turn conversations
 
 ---
 
