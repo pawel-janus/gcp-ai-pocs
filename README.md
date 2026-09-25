@@ -18,12 +18,6 @@ AI-powered changelog generator. Analyzes GitHub commits and PRs using Gemini, ge
 
 `TypeScript` `Fastify` `React` `Gemini` `Cloud Run` `MCP`
 
-### [llm-rag](https://github.com/pawel-janus/llm-rag)
-
-Financial Q&A application using RAG (Retrieval-Augmented Generation) with Gemini 2.5 Flash. Ask questions about SEC quarterly filings in natural language, get answers with citations. Vector search (Vertex AI embeddings + Firestore), context formatting, prompt engineering. Deployed to Cloud Run.
-
-`TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `Firestore` `BigQuery` `Cloud Run`
-
 ### [functions-firestore-auth](https://github.com/pawel-janus/functions-firestore-auth)
 
 Serverless full-stack: Firebase Auth (Google sign-in), Firestore database, Cloud Functions backend. JWT verification, user-scoped queries, Firebase Hosting.
@@ -104,7 +98,13 @@ Semantic search over SEC quarterly filings. Vector embeddings with Vertex AI, Fi
 
 `TypeScript` `Fastify` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed`
 
-**Planned (Phase 1):** RAG pipeline · Multi-source agents (SEC + IEX) · Multi-turn conversations
+### [llm-rag](https://github.com/pawel-janus/llm-rag)
+
+Financial Q&A with RAG pipeline. Ask questions in natural language, get answers with citations from SEC filings. Gemini 2.5 Flash generation, context formatting (human-readable tags/values), prompt engineering. Deployed to Cloud Run with ~2s warm latency.
+
+`TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed`
+
+**Planned (Phase 1):** Multi-source agents (SEC + IEX) · Multi-turn conversations
 
 ---
 
