@@ -104,7 +104,13 @@ Financial Q&A with RAG pipeline. Ask questions in natural language, get answers 
 
 `TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed`
 
-**Planned (Phase 1):** Multi-source agents (SEC + IEX) · Multi-turn conversations
+### llm-data *(private repository)*
+
+ETL / data layer of the Financial Assistant. Loads SEC quarterly facts and daily stock prices into BigQuery: raw files are kept in Cloud Storage exactly as delivered, one Cloud Run Job per data source validates, transforms and loads them idempotently (MERGE), and rows that fail validation go to a quarantine table. Incremental fetching, datasets per data domain, least-privilege service accounts. **The repository is private.**
+
+`TypeScript` `BigQuery` `Cloud Storage` `Cloud Run Jobs` `Cloud Build` `Artifact Registry` `IAM` `Private repo`
+
+**Planned (Phase 1):** Multi-source agents (SEC + prices) · Multi-turn conversations
 
 ---
 
