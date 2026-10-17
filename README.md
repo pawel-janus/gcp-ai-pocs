@@ -110,7 +110,13 @@ ETL / data layer of the Financial Assistant. Loads SEC quarterly facts and daily
 
 `TypeScript` `BigQuery` `Cloud Storage` `Cloud Run Jobs` `Cloud Build` `Artifact Registry` `IAM` `Private repo`
 
-**Planned (Phase 1):** Multi-source agents (SEC + prices) · Multi-turn conversations
+### [llm-agent](https://github.com/pawel-janus/llm-agent)
+
+Financial agent using Gemini function calling over BigQuery. Five tools (SEC facts, stock prices, price change, company and tag lists) with JSON Schema declarations and Zod validation; the model picks tools, calls them in parallel when it can and combines SEC figures with prices in one answer. Parameterized, cost-capped queries (the model never writes SQL), honest "no data" answers for gaps, tool-call log in the UI. Deployed privately to Cloud Run (IAM only, dedicated service account).
+
+`TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `BigQuery` `Cloud Run` `Deployed privately`
+
+**Planned (Phase 1):** Multi-turn conversations
 
 ---
 
