@@ -90,7 +90,7 @@ NextAuth.js v5 integration with Google OAuth. Middleware-based route protection,
 
 ## AI/LLM Applications
 
-Production AI/LLM patterns with GCP implementation. Progressive POC sequence: embeddings → RAG → agents → conversations.
+Production AI/LLM patterns with GCP implementation. Progressive POC sequence: embeddings → RAG → agents → conversations → MCP server.
 
 ### [llm-search](https://github.com/pawel-janus/llm-search)
 
@@ -121,6 +121,12 @@ Financial agent using Gemini function calling over BigQuery. Five tools (SEC fac
 Multi-turn version of the financial agent: follow-ups like "And Walmart's?" are resolved from the conversation. Sessions are stored in Firestore (stateless backend, survives scale-to-zero and several instances), with a session list, message history and tool-call log in the UI, and an alert for long conversations. Same tool-based BigQuery access as the agent. Deployed privately to Cloud Run (IAM only, dedicated service account).
 
 `TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed privately`
+
+### [llm-mcp](https://github.com/pawel-janus/llm-mcp)
+
+MCP (Model Context Protocol) server exposing the financial data as read-only tools: SEC filing figures and daily stock prices in BigQuery, five tools in two groups, usable by any MCP client (MCP Inspector, Claude Code, agents). One codebase serves stdio for local use and stateless Streamable HTTP; tool schemas are Zod 4 and double as the JSON Schema clients see. Deployed privately to Cloud Run (IAM only, read-only service account).
+
+`TypeScript` `MCP` `Fastify` `BigQuery` `Cloud Run` `Deployed privately`
 
 ---
 
