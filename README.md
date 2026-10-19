@@ -116,7 +116,11 @@ Financial agent using Gemini function calling over BigQuery. Five tools (SEC fac
 
 `TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `BigQuery` `Cloud Run` `Deployed privately`
 
-**Planned (Phase 1):** Multi-turn conversations
+### [llm-chat](https://github.com/pawel-janus/llm-chat)
+
+Multi-turn version of the financial agent: follow-ups like "And Walmart's?" are resolved from the conversation. Sessions are stored in Firestore (stateless backend, survives scale-to-zero and several instances), with a session list, message history and tool-call log in the UI, and an alert for long conversations. Same tool-based BigQuery access as the agent. Deployed privately to Cloud Run (IAM only, dedicated service account).
+
+`TypeScript` `Fastify` `React` `Gemini 2.5 Flash` `Vertex AI` `Firestore` `BigQuery` `Cloud Run` `Deployed privately`
 
 ---
 
