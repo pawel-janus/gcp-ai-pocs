@@ -90,7 +90,7 @@ NextAuth.js v5 integration with Google OAuth. Middleware-based route protection,
 
 ## AI/LLM Applications
 
-Production AI/LLM patterns with GCP implementation. Progressive POC sequence: embeddings → RAG → agents → conversations → MCP server.
+Production AI/LLM patterns with GCP implementation. Progressive POC sequence: embeddings → RAG → agents → conversations → MCP server → data platform.
 
 ### [llm-search](https://github.com/pawel-janus/llm-search)
 
@@ -106,7 +106,7 @@ Financial Q&A with RAG pipeline. Ask questions in natural language, get answers 
 
 ### llm-data *(private repository)*
 
-ETL / data layer of the Financial Assistant. Loads SEC quarterly facts and daily stock prices into BigQuery: raw files are kept in Cloud Storage exactly as delivered, one Cloud Run Job per data source validates, transforms and loads them idempotently (MERGE), and rows that fail validation go to a quarantine table. Incremental fetching, datasets per data domain, least-privilege service accounts. **The repository is private.**
+ETL / data layer of the Financial Assistant. Loads SEC quarterly facts and daily stock prices into BigQuery: raw files are kept in Cloud Storage exactly as delivered, one Cloud Run Job per data source validates, transforms and loads them idempotently (MERGE), and rows that fail validation go to a quarantine table. Incremental fetching, datasets per data domain, least-privilege service accounts. **The repository is private.** Superseded by `llm-data-platform`.
 
 `TypeScript` `BigQuery` `Cloud Storage` `Cloud Run Jobs` `Cloud Build` `Artifact Registry` `IAM` `Private repo`
 
@@ -127,6 +127,12 @@ Multi-turn version of the financial agent: follow-ups like "And Walmart's?" are 
 MCP (Model Context Protocol) server exposing the financial data as read-only tools: SEC filing figures and daily stock prices in BigQuery, five tools in two groups, usable by any MCP client (MCP Inspector, Claude Code, agents). One codebase serves stdio for local use and stateless Streamable HTTP; tool schemas are Zod 4 and double as the JSON Schema clients see. Deployed privately to Cloud Run (IAM only, read-only service account).
 
 `TypeScript` `MCP` `Fastify` `BigQuery` `Cloud Run` `Deployed privately`
+
+### llm-data-platform *(private repository)*
+
+Data platform behind the financial assistant: an npm workspaces monorepo with one ETL per source, one MCP server per data domain and shared schemas. SEC EDGAR facts of nine companies and daily prices are loaded into BigQuery by Cloud Run Jobs (incremental, validated, with a quarantine); views expose the current value of each fact, the gaps of the data and 15 metrics with derived standalone quarters, and two private MCP servers on Cloud Run serve them with growth, ratios and trailing twelve months computed in code and data-quality flags in every answer. 40 SQL data checks. **The repository is private.**
+
+`TypeScript` `MCP` `BigQuery` `Cloud Storage` `Cloud Run Jobs` `Cloud Run` `Cloud Build` `IAM` `Private repo`
 
 ---
 
