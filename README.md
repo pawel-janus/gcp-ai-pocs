@@ -1,5 +1,8 @@
 # Portfolio
 
+> [!IMPORTANT]
+> **Showcase samples only.** The projects listed below are small demonstration samples built to illustrate patterns and techniques. They are not the code I work on professionally. That code is proprietary to my employer and cannot be disclosed.
+
 TypeScript fullstack developer building production-ready applications on Google Cloud Platform. Focused on serverless architecture, AI integrations, and modern frontend patterns.
 
 **Certifications**
